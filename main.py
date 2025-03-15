@@ -249,8 +249,9 @@ def process_profile(profile_id, api_token):
 
 def main():
     """Запускает обработку профилей пачками."""
-    for batch_start in range(0, TOTAL_PROFILES, PROFILES_PER_BATCH):
-        batch_profiles = get_all_profile_ids()[batch_start:batch_start + PROFILES_PER_BATCH]
+    ID = get_all_profile_ids()
+    for batch_start in range(0, len(ID), PROFILES_PER_BATCH):
+        batch_profiles = ID[batch_start:batch_start + PROFILES_PER_BATCH]
         threads = []
 
         for profile_id in batch_profiles:
